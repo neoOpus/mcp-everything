@@ -1,0 +1,5 @@
+[33m8c5a110[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Update SpecStory examples to showcase new documentation search tool
+[33m9ee19ce[m Add SpecStory integration with dedicated documentation search tool
+[33m674292b[m Update configuration examples to include Kiro IDE support
+[33m4ccef5d[m Add Kiro IDE MCP integration instructions
+[33md02c531[m Initial commit: Everything MCP Server with full documentation and architecture
