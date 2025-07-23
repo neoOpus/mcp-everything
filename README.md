@@ -40,16 +40,26 @@ A comprehensive Model Context Protocol (MCP) server that transforms [voidtools E
 ## 📋 Prerequisites
 
 - **Windows OS**: Everything only runs on Windows
+- **Python 3.8+**: Required for virtual environment management
+- **Python Virtual Environment**: All operations must run in an activated venv
 - **Everything Installed**: Download from [voidtools.com](https://www.voidtools.com/)
 - **Node.js 18+**: Required for MCP server
 - **es.exe Available**: Command-line interface must be accessible
 
-### Everything Setup
+### Environment Setup
 
-1. Install Everything from [voidtools.com](https://www.voidtools.com/)
-2. Ensure the Everything service is running
-3. Verify `es.exe` exists at: `C:\Program Files\Everything\es.exe`
-4. Test with: `"C:\Program Files\Everything\es.exe" test`
+1. **Create and activate Python virtual environment:**
+   ```bash
+   python -m venv everything-mcp-env
+   everything-mcp-env\Scripts\activate
+   ```
+
+2. **Install Everything from [voidtools.com](https://www.voidtools.com/)**
+3. **Ensure the Everything service is running**
+4. **Verify `es.exe` exists at: `C:\Program Files\Everything\es.exe`**
+5. **Test with: `"C:\Program Files\Everything\es.exe" test`**
+
+**⚠️ Important**: All commands must be run within the activated virtual environment.
 
 ## 🛠️ Installation
 
@@ -58,14 +68,22 @@ A comprehensive Model Context Protocol (MCP) server that transforms [voidtools E
 ![Installation Flow](./installation-flow.svg)
 
 ```bash
+# Ensure virtual environment is activated
+python -m venv everything-mcp-env
+everything-mcp-env\Scripts\activate
+
 # One command installs and configures everything for Kiro
 npm install -g everything-mcp-kiro
 kiro-everything --setup
 ```
 
-### Option 2: From Source
+### Option 2: From Source (Recommended)
 
 ```bash
+# Create and activate virtual environment
+python -m venv everything-mcp-env
+everything-mcp-env\Scripts\activate
+
 # Clone the repository
 git clone https://github.com/SoMaCoSF/mcp-everything.git
 cd mcp-everything
@@ -75,11 +93,18 @@ npm install
 
 # Build the server
 npm run build
+
+# Test the installation (includes venv validation)
+npm run test:kiro
 ```
 
 ### Option 3: Manual Configuration
 
 ```bash
+# Ensure virtual environment is activated
+python -m venv everything-mcp-env
+everything-mcp-env\Scripts\activate
+
 npm install -g everything-mcp-server
 ```
 
