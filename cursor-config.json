@@ -1,6 +1,6 @@
 {
-  "//": "Cursor MCP Configuration for Everything Search",
-  "//": "Add this to your Cursor settings.json under the 'mcp' key",
+  "//": "MCP Configuration for Everything Search",
+  "//": "Configuration examples for Cursor IDE and Kiro IDE",
   
   "mcp": {
     "servers": {
@@ -18,7 +18,7 @@
     }
   },
   
-  "//": "Alternative configurations:",
+  "//": "Cursor IDE alternative configurations:",
   
   "mcp_global_install": {
     "servers": {
@@ -43,7 +43,40 @@
         "env": {
           "EVERYTHING_PATH": "C:\\CustomPath\\Everything\\es.exe",
           "TRACE_DIRECTORY": "D:\\outputs\\traces"
-        }
+                 }
+       }
+     }
+   },
+
+  "//": "Kiro IDE configurations:",
+  "//": "Add to your Kiro MCP configuration file",
+
+  "kiro_mcp_config": {
+    "mcpServers": {
+      "everything-search": {
+        "command": "node",
+        "args": [
+          "path/to/everything-mcp/dist/index.js"
+        ],
+        "env": {
+          "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+          "TRACE_DIRECTORY": "D:\\outputs\\traces"
+        },
+        "description": "Everything search integration for agentic development"
+      }
+    }
+  },
+
+  "kiro_global_install": {
+    "mcpServers": {
+      "everything-search": {
+        "command": "everything-mcp-server",
+        "args": [],
+        "env": {
+          "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+          "TRACE_DIRECTORY": "D:\\outputs\\traces"
+        },
+        "description": "Everything search with global npm install"
       }
     }
   }

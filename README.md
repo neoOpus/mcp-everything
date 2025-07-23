@@ -1,6 +1,6 @@
 # Everything MCP Server
 
-A Model Context Protocol (MCP) server that integrates [voidtools Everything](https://www.voidtools.com/) search engine with AI assistants like Cursor, Claude, and other MCP-compatible tools. Provides lightning-fast file and folder search capabilities using Everything's powerful indexing.
+A Model Context Protocol (MCP) server that integrates [voidtools Everything](https://www.voidtools.com/) search engine with AI assistants like Cursor, [Kiro IDE](https://github.com/kirodotdev/Kiro), Claude, and other MCP-compatible tools. Provides lightning-fast file and folder search capabilities using Everything's powerful indexing.
 
 ![Everything MCP Architecture](./architecture.svg)
 
@@ -12,7 +12,7 @@ A Model Context Protocol (MCP) server that integrates [voidtools Everything](htt
 - **Regex Support**: Use regular expressions for complex searches
 - **Service Health Checks**: Verify Everything service status
 - **Comprehensive Logging**: Full trace logging for debugging
-- **Easy Integration**: Simple setup with Cursor and other MCP clients
+- **Easy Integration**: Simple setup with Cursor, Kiro, and other MCP clients
 
 ## 📋 Prerequisites
 
@@ -50,7 +50,9 @@ npm run build
 npm install -g everything-mcp-server
 ```
 
-## 🔧 Usage with Cursor
+## 🔧 Usage with AI Assistants
+
+### Cursor IDE
 
 Add to your Cursor `settings.json`:
 
@@ -70,6 +72,39 @@ Add to your Cursor `settings.json`:
   }
 }
 ```
+
+### Kiro IDE
+
+[Kiro](https://github.com/kirodotdev/Kiro) is an agentic IDE that supports MCP servers for external tool integration. To add Everything search to Kiro:
+
+1. **Open Kiro IDE** and navigate to your project
+2. **Create or edit your MCP configuration** following Kiro's MCP documentation
+3. **Add the Everything MCP server** to your Kiro configuration:
+
+```json
+{
+  "mcpServers": {
+    "everything-search": {
+      "command": "node",
+      "args": ["path/to/everything-mcp/dist/index.js"],
+      "env": {
+        "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+        "TRACE_DIRECTORY": "D:\\outputs\\traces"
+      },
+      "description": "Everything search integration for fast file/folder search"
+    }
+  }
+}
+```
+
+4. **Restart Kiro** to load the new MCP server
+5. **Use Everything search** through Kiro's agentic chat interface
+
+**Kiro-specific features:**
+- **Specs Integration**: Use Everything search to find files when planning features with Kiro's spec-driven development
+- **Hooks Automation**: Set up automated file searches triggered by development events
+- **Natural Language**: Ask Kiro to "find all TypeScript files modified today" and it will use Everything search
+- **Project Context**: Kiro understands your project structure and can combine Everything search with its codebase knowledge
 
 ## 🔍 Available Tools
 
@@ -167,7 +202,7 @@ The server logs all operations to the trace directory:
 
 The Everything MCP Server provides a bridge between AI assistants and the Everything search engine:
 
-1. **MCP Client** (Cursor/Claude) sends search requests
+1. **MCP Client** (Cursor/Kiro/Claude) sends search requests
 2. **MCP Server** validates and processes requests
 3. **es.exe** executes the actual search
 4. **Results** are parsed and returned as structured JSON
@@ -215,6 +250,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 - [voidtools](https://www.voidtools.com/) for the amazing Everything search engine
 - [Model Context Protocol](https://modelcontextprotocol.io/) for the MCP specification
 - The Cursor team for MCP integration
+- [Kiro IDE](https://github.com/kirodotdev/Kiro) for agentic development with MCP support
 
 ---
 
