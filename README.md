@@ -4,6 +4,12 @@ A comprehensive Model Context Protocol (MCP) server that transforms [voidtools E
 
 ![Everything MCP Architecture](./architecture.svg)
 
+## 🎯 Kiro IDE Integration Workflow
+
+![Kiro Workflow](./kiro-workflow.svg)
+
+*Complete spec-driven development workflow from requirements to implementation*
+
 ## 🚀 Features
 
 ### Core Search Capabilities
@@ -47,12 +53,22 @@ A comprehensive Model Context Protocol (MCP) server that transforms [voidtools E
 
 ## 🛠️ Installation
 
-### Option 1: From Source
+### Option 1: One-Click Kiro Installation *(Coming Soon)*
+
+![Installation Flow](./installation-flow.svg)
+
+```bash
+# One command installs and configures everything for Kiro
+npm install -g everything-mcp-kiro
+kiro-everything --setup
+```
+
+### Option 2: From Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/somacosf/everything-mcp.git
-cd everything-mcp
+git clone https://github.com/SoMaCoSF/mcp-everything.git
+cd mcp-everything
 
 # Install dependencies
 npm install
@@ -61,7 +77,7 @@ npm install
 npm run build
 ```
 
-### Option 2: Global Install (Coming Soon)
+### Option 3: Manual Configuration
 
 ```bash
 npm install -g everything-mcp-server
@@ -329,26 +345,16 @@ The Enhanced Everything MCP Server transforms simple file search into an intelli
 5. **Trace System** logs all operations for debugging
 
 ### Enhanced Architecture (v2.0 - In Development)
-```
-┌─────────────────┐    ┌──────────────────────────────────┐    ┌─────────────────┐
-│   Kiro IDE      │    │     Enhanced MCP Server          │    │  External APIs  │
-│                 │    │                                  │    │                 │
-│ ┌─────────────┐ │    │ ┌─────────────┐ ┌──────────────┐ │    │ ┌─────────────┐ │
-│ │ Chat/Agent  │◄┼────┼►│ MCP Core    │ │ GitHub       │◄┼────┼►│ GitHub API  │ │
-│ └─────────────┘ │    │ └─────────────┘ │ Integration  │ │    │ └─────────────┘ │
-│                 │    │                 └──────────────┘ │    │                 │
-│ ┌─────────────┐ │    │ ┌─────────────┐ ┌──────────────┐ │    │ ┌─────────────┐ │
-│ │ Terminal    │◄┼────┼►│ TUI         │ │ Research     │ │    │ │ Everything  │ │
-│ │ Interface   │ │    │ │ Controller  │ │ Engine       │◄┼────┼►│ Search      │ │
-│ └─────────────┘ │    │ └─────────────┘ └──────────────┘ │    │ └─────────────┘ │
-└─────────────────┘    │                                  │    └─────────────────┘
-                       │ ┌─────────────┐ ┌──────────────┐ │    
-                       │ │ SQLite      │ │ Logging      │ │    
-                       │ │ Knowledge   │ │ Harness      │ │    
-                       │ │ Base        │ └──────────────┘ │    
-                       │ └─────────────┘                  │    
-                       └──────────────────────────────────┘    
-```
+
+![Research Workflow](./research-workflow.svg)
+
+*Intent-based code research with GitHub discovery and pattern analysis*
+
+### Terminal User Interface Preview
+
+![TUI Mockup](./tui-mockup.svg)
+
+*Interactive terminal dashboard for project management and search*
 
 ### Key Components
 - **Research Engine**: Intent-based code discovery and pattern analysis

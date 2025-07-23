@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <style>
+      .input-node { fill: #E3F2FD; stroke: #1976D2; stroke-width: 2; rx: 8; }
+      .process-node { fill: #F3E5F5; stroke: #7B1FA2; stroke-width: 2; rx: 8; }
+      .analysis-node { fill: #E8F5E8; stroke: #388E3C; stroke-width: 2; rx: 8; }
+      .output-node { fill: #FFF3E0; stroke: #F57C00; stroke-width: 2; rx: 8; }
+      .storage-node { fill: #FAFAFA; stroke: #616161; stroke-width: 2; rx: 8; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .data-flow { stroke: #7B1FA2; stroke-width: 2; fill: none; marker-end: url(#purplearrow); stroke-dasharray: 5,5; }
+      .text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; text-anchor: middle; font-weight: bold; }
+      .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: bold; text-anchor: middle; fill: #1976D2; }
+      .phase-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; fill: #7B1FA2; }
+      .small { font-size: 9px; }
+      .label { font-size: 10px; fill: #333; text-anchor: middle; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#333"/>
+    </marker>
+    <marker id="purplearrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#7B1FA2"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title">Intent-Based Code Research Workflow</text>
+  <text x="600" y="50" class="label">Deep GitHub Discovery + Pattern Analysis + Knowledge Base Building</text>
+  
+  <!-- Input Phase -->
+  <text x="150" y="90" class="phase-title">Input Analysis</text>
+  
+  <rect class="input-node" x="50" y="110" width="120" height="50"/>
+  <text x="110" y="130" class="text">Specification</text>
+  <text x="110" y="145" class="text small">requirements.md</text>
+  
+  <rect class="input-node" x="50" y="180" width="120" height="50"/>
+  <text x="110" y="200" class="text">Design Doc</text>
+  <text x="110" y="215" class="text small">design.md</text>
+  
+  <rect class="input-node" x="50" y="250" width="120" height="50"/>
+  <text x="110" y="270" class="text">User Intent</text>
+  <text x="110" y="285" class="text small">Natural language</text>
+  
+  <!-- Processing Phase -->
+  <text x="350" y="90" class="phase-title">Intent Processing</text>
+  
+  <rect class="process-node" x="250" y="110" width="120" height="50"/>
+  <text x="310" y="130" class="text">NLP Parser</text>
+  <text x="310" y="145" class="text small">Extract goals</text>
+  
+  <rect class="process-node" x="250" y="180" width="120" height="50"/>
+  <text x="310" y="200" class="text">Concept Map</text>
+  <text x="310" y="215" class="text small">Related terms</text>
+  
+  <rect class="process-node" x="250" y="250" width="120" height="50"/>
+  <text x="310" y="270" class="text">Query Builder</text>
+  <text x="310" y="285" class="text small">Search strategies</text>
+  
+  <!-- GitHub Search Phase -->
+  <text x="550" y="90" class="phase-title">GitHub Discovery</text>
+  
+  <rect class="analysis-node" x="450" y="110" width="120" height="50"/>
+  <text x="510" y="130" class="text">Repo Search</text>
+  <text x="510" y="145" class="text small">Multi-strategy</text>
+  
+  <rect class="analysis-node" x="450" y="180" width="120" height="50"/>
+  <text x="510" y="200" class="text">Code Analysis</text>
+  <text x="510" y="215" class="text small">Pattern extraction</text>
+  
+  <rect class="analysis-node" x="450" y="250" width="120" height="50"/>
+  <text x="510" y="270" class="text">Quality Check</text>
+  <text x="510" y="285" class="text small">License + metrics</text>
+  
+  <!-- Analysis Phase -->
+  <text x="750" y="90" class="phase-title">Pattern Analysis</text>
+  
+  <rect class="analysis-node" x="650" y="110" width="120" height="50"/>
+  <text x="710" y="130" class="text">Similarity</text>
+  <text x="710" y="145" class="text small">Pattern matching</text>
+  
+  <rect class="analysis-node" x="650" y="180" width="120" height="50"/>
+  <text x="710" y="200" class="text">Clustering</text>
+  <text x="710" y="215" class="text small">Group patterns</text>
+  
+  <rect class="analysis-node" x="650" y="250" width="120" height="50"/>
+  <text x="710" y="270" class="text">Ranking</text>
+  <text x="710" y="285" class="text small">Relevance score</text>
+  
+  <!-- Output Phase -->
+  <text x="950" y="90" class="phase-title">Output Generation</text>
+  
+  <rect class="output-node" x="850" y="110" width="120" height="50"/>
+  <text x="910" y="130" class="text">Suggestions</text>
+  <text x="910" y="145" class="text small">Implementation</text>
+  
+  <rect class="output-node" x="850" y="180" width="120" height="50"/>
+  <text x="910" y="200" class="text">CSV Export</text>
+  <text x="910" y="215" class="text small">Structured data</text>
+  
+  <rect class="output-node" x="850" y="250" width="120" height="50"/>
+  <text x="910" y="270" class="text">Reports</text>
+  <text x="910" y="285" class="text small">Research summary</text>
+  
+  <!-- Storage Layer -->
+  <text x="600" y="350" class="phase-title">Knowledge Base (SQLite)</text>
+  
+  <rect class="storage-node" x="150" y="380" width="140" height="60"/>
+  <text x="220" y="405" class="text">Repositories</text>
+  <text x="220" y="420" class="text small">Metadata + quality</text>
+  
+  <rect class="storage-node" x="320" y="380" width="140" height="60"/>
+  <text x="390" y="405" class="text">Code Patterns</text>
+  <text x="390" y="420" class="text small">Extracted snippets</text>
+  
+  <rect class="storage-node" x="490" y="380" width="140" height="60"/>
+  <text x="560" y="405" class="text">Concepts</text>
+  <text x="560" y="420" class="text small">Relationships</text>
+  
+  <rect class="storage-node" x="660" y="380" width="140" height="60"/>
+  <text x="730" y="405" class="text">Sessions</text>
+  <text x="730" y="420" class="text small">Research history</text>
+  
+  <rect class="storage-node" x="830" y="380" width="140" height="60"/>
+  <text x="900" y="405" class="text">Implementations</text>
+  <text x="900" y="420" class="text small">Approach analysis</text>
+  
+  <!-- Main Flow Arrows -->
+  <line class="arrow" x1="170" y1="135" x2="250" y2="135"/>
+  <line class="arrow" x1="170" y1="205" x2="250" y2="205"/>
+  <line class="arrow" x1="170" y1="275" x2="250" y2="275"/>
+  
+  <line class="arrow" x1="370" y1="135" x2="450" y2="135"/>
+  <line class="arrow" x1="370" y1="205" x2="450" y2="205"/>
+  <line class="arrow" x1="370" y1="275" x2="450" y2="275"/>
+  
+  <line class="arrow" x1="570" y1="135" x2="650" y2="135"/>
+  <line class="arrow" x1="570" y1="205" x2="650" y2="205"/>
+  <line class="arrow" x1="570" y1="275" x2="650" y2="275"/>
+  
+  <line class="arrow" x1="770" y1="135" x2="850" y2="135"/>
+  <line class="arrow" x1="770" y1="205" x2="850" y2="205"/>
+  <line class="arrow" x1="770" y1="275" x2="850" y2="275"/>
+  
+  <!-- Data flow to storage -->
+  <line class="data-flow" x1="510" y1="160" x2="220" y2="380"/>
+  <line class="data-flow" x1="510" y1="205" x2="390" y2="380"/>
+  <line class="data-flow" x1="310" y1="205" x2="560" y2="380"/>
+  <line class="data-flow" x1="710" y1="160" x2="730" y2="380"/>
+  <line class="data-flow" x1="910" y1="135" x2="900" y2="380"/>
+  
+  <!-- Example Research Session -->
+  <text x="600" y="500" class="phase-title">Example Research Session</text>
+  
+  <rect fill="#E3F2FD" stroke="#1976D2" stroke-width="1" x="50" y="520" width="1100" height="320" rx="8"/>
+  
+  <text x="80" y="545" class="text" style="fill: #1976D2; text-anchor: start;">Input Specification:</text>
+  <text x="80" y="565" class="label" style="text-anchor: start;">"Build a Terminal User Interface (TUI) for interactive search with keyboard navigation and real-time filtering"</text>
+  
+  <text x="80" y="595" class="text" style="fill: #7B1FA2; text-anchor: start;">Intent Analysis Results:</text>
+  <text x="100" y="615" class="label" style="text-anchor: start;">• Primary concepts: terminal UI, keyboard navigation, real-time search, interactive interface</text>
+  <text x="100" y="630" class="label" style="text-anchor: start;">• Related technologies: blessed.js, ink, ncurses, terminal libraries</text>
+  <text x="100" y="645" class="label" style="text-anchor: start;">• Implementation patterns: event-driven UI, component architecture, state management</text>
+  
+  <text x="80" y="675" class="text" style="fill: #388E3C; text-anchor: start;">GitHub Discovery (47 repositories found):</text>
+  <text x="100" y="695" class="label" style="text-anchor: start;">• blessed-contrib (★2.1k) - Dashboard widgets for terminal interfaces</text>
+  <text x="100" y="710" class="label" style="text-anchor: start;">• ink (★19.2k) - React-like components for CLI apps</text>
+  <text x="100" y="725" class="label" style="text-anchor: start;">• enquirer (★7.2k) - Interactive command-line prompts</text>
+  <text x="100" y="740" class="label" style="text-anchor: start;">• terminal-kit (★1.8k) - Full-featured terminal library</text>
+  
+  <text x="80" y="770" class="text" style="fill: #F57C00; text-anchor: start;">Generated Implementation Suggestions:</text>
+  <text x="100" y="790" class="label" style="text-anchor: start;">1. Use blessed.js for cross-platform terminal UI with built-in keyboard handling</text>
+  <text x="100" y="805" class="label" style="text-anchor: start;">2. Implement component-based architecture with separate screens (dashboard, search, results)</text>
+  <text x="100" y="820" class="label" style="text-anchor: start;">3. Add real-time search with debounced input handling and live result updates</text>
+  
+  <!-- Research Metrics -->
+  <rect fill="#FAFAFA" stroke="#616161" stroke-width="1" x="650" y="540" width="480" height="140" rx="4"/>
+  <text x="890" y="560" class="text" style="fill: #616161;">Research Session Metrics</text>
+  <text x="670" y="580" class="label" style="text-anchor: start;">Search Duration: 2.3 seconds</text>
+  <text x="670" y="595" class="label" style="text-anchor: start;">Repositories Analyzed: 47</text>
+  <text x="670" y="610" class="label" style="text-anchor: start;">Code Patterns Extracted: 23</text>
+  <text x="670" y="625" class="label" style="text-anchor: start;">Quality Score Range: 7.2 - 9.8/10</text>
+  <text x="670" y="640" class="label" style="text-anchor: start;">License Compatibility: 89% MIT/Apache</text>
+  <text x="670" y="655" class="label" style="text-anchor: start;">Knowledge Base Entries Added: 15</text>
+  <text x="670" y="670" class="label" style="text-anchor: start;">CSV Export: research_session_20250123.csv</text>
+</svg>

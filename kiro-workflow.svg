@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <style>
+      .kiro-node { fill: #4CAF50; stroke: #2E7D32; stroke-width: 2; rx: 8; }
+      .spec-node { fill: #2196F3; stroke: #1565C0; stroke-width: 2; rx: 8; }
+      .search-node { fill: #FF9800; stroke: #E65100; stroke-width: 2; rx: 8; }
+      .research-node { fill: #9C27B0; stroke: #4A148C; stroke-width: 2; rx: 8; }
+      .output-node { fill: #607D8B; stroke: #263238; stroke-width: 2; rx: 8; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .flow-arrow { stroke: #4CAF50; stroke-width: 3; fill: none; marker-end: url(#greenarrow); }
+      .text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; text-anchor: middle; fill: white; font-weight: bold; }
+      .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 20px; font-weight: bold; text-anchor: middle; fill: #2E7D32; }
+      .phase-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; fill: #1565C0; }
+      .small { font-size: 9px; }
+      .label { font-size: 10px; fill: #333; text-anchor: middle; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#333"/>
+    </marker>
+    <marker id="greenarrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#4CAF50"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title">Kiro IDE + Enhanced Everything MCP: Spec-Driven Development Workflow</text>
+  
+  <!-- Phase 1: Specification Creation -->
+  <text x="150" y="70" class="phase-title">Phase 1: Spec Creation</text>
+  
+  <rect class="kiro-node" x="50" y="90" width="120" height="50"/>
+  <text x="110" y="115" class="text">Create Spec</text>
+  <text x="110" y="128" class="text small">in Kiro</text>
+  
+  <rect class="spec-node" x="50" y="160" width="120" height="50"/>
+  <text x="110" y="180" class="text">Requirements</text>
+  <text x="110" y="195" class="text small">requirements.md</text>
+  
+  <rect class="spec-node" x="50" y="230" width="120" height="50"/>
+  <text x="110" y="250" class="text">Design</text>
+  <text x="110" y="265" class="text small">design.md</text>
+  
+  <rect class="spec-node" x="50" y="300" width="120" height="50"/>
+  <text x="110" y="320" class="text">Tasks</text>
+  <text x="110" y="335" class="text small">tasks.md</text>
+  
+  <!-- Phase 2: Research & Discovery -->
+  <text x="400" y="70" class="phase-title">Phase 2: Research & Discovery</text>
+  
+  <rect class="search-node" x="300" y="90" width="140" height="50"/>
+  <text x="370" y="110" class="text">Spec-Aware Search</text>
+  <text x="370" y="125" class="text small">Find related files</text>
+  
+  <rect class="research-node" x="300" y="160" width="140" height="50"/>
+  <text x="370" y="180" class="text">Intent-Based Research</text>
+  <text x="370" y="195" class="text small">GitHub code discovery</text>
+  
+  <rect class="research-node" x="300" y="230" width="140" height="50"/>
+  <text x="370" y="250" class="text">Pattern Analysis</text>
+  <text x="370" y="265" class="text small">Code pattern matching</text>
+  
+  <rect class="output-node" x="300" y="300" width="140" height="50"/>
+  <text x="370" y="320" class="text">Knowledge Base</text>
+  <text x="370" y="335" class="text small">SQLite storage</text>
+  
+  <!-- Phase 3: Implementation -->
+  <text x="650" y="70" class="phase-title">Phase 3: Implementation</text>
+  
+  <rect class="kiro-node" x="580" y="90" width="140" height="50"/>
+  <text x="650" y="110" class="text">Task Execution</text>
+  <text x="650" y="125" class="text small">Kiro agent coding</text>
+  
+  <rect class="search-node" x="580" y="160" width="140" height="50"/>
+  <text x="650" y="180" class="text">Implementation Search</text>
+  <text x="650" y="195" class="text small">Find examples</text>
+  
+  <rect class="output-node" x="580" y="230" width="140" height="50"/>
+  <text x="650" y="250" class="text">Code Generation</text>
+  <text x="650" y="265" class="text small">AI-assisted coding</text>
+  
+  <rect class="spec-node" x="580" y="300" width="140" height="50"/>
+  <text x="650" y="320" class="text">Traceability</text>
+  <text x="650" y="335" class="text small">Spec ↔ Code links</text>
+  
+  <!-- Phase 4: Monitoring & TUI -->
+  <text x="950" y="70" class="phase-title">Phase 4: Monitoring</text>
+  
+  <rect class="kiro-node" x="850" y="90" width="140" height="50"/>
+  <text x="920" y="110" class="text">TUI Dashboard</text>
+  <text x="920" y="125" class="text small">Terminal interface</text>
+  
+  <rect class="output-node" x="850" y="160" width="140" height="50"/>
+  <text x="920" y="180" class="text">Progress Tracking</text>
+  <text x="920" y="195" class="text small">Spec completion</text>
+  
+  <rect class="search-node" x="850" y="230" width="140" height="50"/>
+  <text x="920" y="250" class="text">Live Search</text>
+  <text x="920" y="265" class="text small">Interactive queries</text>
+  
+  <rect class="research-node" x="850" y="300" width="140" height="50"/>
+  <text x="920" y="320" class="text">Research Reports</text>
+  <text x="920" y="335" class="text small">CSV exports</text>
+  
+  <!-- Main Workflow Arrows -->
+  <line class="flow-arrow" x1="170" y1="115" x2="300" y2="115"/>
+  <text x="235" y="110" class="label">Analyze specs</text>
+  
+  <line class="flow-arrow" x1="440" y1="185" x2="580" y2="115"/>
+  <text x="510" y="145" class="label">Research findings</text>
+  
+  <line class="flow-arrow" x1="720" y1="185" x2="850" y2="115"/>
+  <text x="785" y="145" class="label">Monitor progress</text>
+  
+  <!-- Vertical connections within phases -->
+  <line class="arrow" x1="110" y1="140" x2="110" y2="160"/>
+  <line class="arrow" x1="110" y1="210" x2="110" y2="230"/>
+  <line class="arrow" x1="110" y1="280" x2="110" y2="300"/>
+  
+  <line class="arrow" x1="370" y1="140" x2="370" y2="160"/>
+  <line class="arrow" x1="370" y1="210" x2="370" y2="230"/>
+  <line class="arrow" x1="370" y1="280" x2="370" y2="300"/>
+  
+  <line class="arrow" x1="650" y1="140" x2="650" y2="160"/>
+  <line class="arrow" x1="650" y1="210" x2="650" y2="230"/>
+  <line class="arrow" x1="650" y1="280" x2="650" y2="300"/>
+  
+  <line class="arrow" x1="920" y1="140" x2="920" y2="160"/>
+  <line class="arrow" x1="920" y1="210" x2="920" y2="230"/>
+  <line class="arrow" x1="920" y1="280" x2="920" y2="300"/>
+  
+  <!-- Key Features Box -->
+  <rect fill="#E8F5E8" stroke="#4CAF50" stroke-width="2" x="50" y="400" width="1100" height="180" rx="8"/>
+  <text x="600" y="425" class="phase-title">Key Kiro Integration Features</text>
+  
+  <!-- Feature columns -->
+  <text x="150" y="450" class="phase-title" style="font-size: 12px;">Spec-Driven Search</text>
+  <text x="150" y="470" class="label">• Understands requirements.md</text>
+  <text x="150" y="485" class="label">• Cross-references design.md</text>
+  <text x="150" y="500" class="label">• Links tasks to implementation</text>
+  <text x="150" y="515" class="label">• Tracks completion status</text>
+  <text x="150" y="530" class="label">• Identifies affected files</text>
+  
+  <text x="400" y="450" class="phase-title" style="font-size: 12px;">GitHub Integration</text>
+  <text x="400" y="470" class="label">• Intent-based code discovery</text>
+  <text x="400" y="485" class="label">• Pattern recognition</text>
+  <text x="400" y="500" class="label">• Quality assessment</text>
+  <text x="400" y="515" class="label">• License compatibility</text>
+  <text x="400" y="530" class="label">• Implementation suggestions</text>
+  
+  <text x="650" y="450" class="phase-title" style="font-size: 12px;">Knowledge Management</text>
+  <text x="650" y="470" class="label">• SQLite knowledge base</text>
+  <text x="650" y="485" class="label">• Pattern library building</text>
+  <text x="650" y="500" class="label">• CSV export capabilities</text>
+  <text x="650" y="515" class="label">• Research session history</text>
+  <text x="650" y="530" class="label">• Concept relationship mapping</text>
+  
+  <text x="900" y="450" class="phase-title" style="font-size: 12px;">Terminal UI (TUI)</text>
+  <text x="900" y="470" class="label">• Interactive dashboard</text>
+  <text x="900" y="485" class="label">• Real-time search interface</text>
+  <text x="900" y="500" class="label">• Progress visualization</text>
+  <text x="900" y="515" class="label">• Keyboard navigation</text>
+  <text x="900" y="530" class="label">• Research monitoring</text>
+  
+  <!-- Bottom workflow indicators -->
+  <text x="600" y="620" class="title" style="font-size: 16px;">Continuous Feedback Loop</text>
+  
+  <!-- Curved feedback arrow -->
+  <path d="M 100 380 Q 600 350 1000 380" stroke="#4CAF50" stroke-width="3" fill="none" marker-end="url(#greenarrow)" stroke-dasharray="10,5"/>
+  <text x="550" y="365" class="label">Research findings inform implementation • Implementation updates specs • Continuous improvement</text>
+  
+  <!-- Usage Examples -->
+  <text x="600" y="680" class="phase-title">Example Kiro Commands</text>
+  <text x="200" y="700" class="label">"Find all authentication-related files in this project"</text>
+  <text x="600" y="700" class="label">"Research GitHub for React component patterns"</text>
+  <text x="950" y="700" class="label">"Show TUI dashboard for current spec"</text>
+  
+  <text x="200" y="720" class="label">"What tasks are incomplete in user-auth spec?"</text>
+  <text x="600" y="720" class="label">"Export research findings to CSV"</text>
+  <text x="950" y="720" class="label">"Launch interactive search interface"</text>
+  
+  <text x="600" y="750" class="label" style="font-style: italic;">Natural language commands powered by Kiro's AI agent + Everything MCP integration</text>
+</svg>

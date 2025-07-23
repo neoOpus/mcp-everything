@@ -17,15 +17,15 @@
   </defs>
   
   <!-- Title -->
-  <text x="500" y="30" class="title">Everything MCP Server Architecture</text>
+  <text x="500" y="30" class="title">Enhanced Everything MCP Server - Kiro Integration</text>
   
   <!-- User Layer -->
   <rect class="node" x="50" y="80" width="150" height="50"/>
-  <text x="125" y="110" class="text">User in Cursor IDE</text>
+  <text x="125" y="110" class="text">Developer in Kiro IDE</text>
   
   <!-- AI Assistant -->
   <rect class="node" x="280" y="80" width="150" height="50"/>
-  <text x="355" y="110" class="text">Cursor AI Assistant</text>
+  <text x="355" y="110" class="text">Kiro AI Agent</text>
   
   <!-- MCP Server -->
   <rect class="node" x="550" y="80" width="160" height="50"/>
