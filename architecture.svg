@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+w<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
   <defs>
     <style>
       .node { fill: #e1f5fe; stroke: #333; stroke-width: 2; rx: 8; }
@@ -32,17 +32,21 @@
   <text x="630" y="110" class="text">Everything MCP Server</text>
   
   <!-- Tool Handlers -->
-  <rect class="node" x="350" y="200" width="130" height="45"/>
-  <text x="415" y="225" class="text">Basic Search</text>
-  <text x="415" y="238" class="text small">everything_search</text>
+  <rect class="node" x="280" y="200" width="120" height="45"/>
+  <text x="340" y="220" class="text">Spec Search</text>
+  <text x="340" y="235" class="text small">spec_aware</text>
   
-  <rect class="node" x="520" y="200" width="130" height="45"/>
-  <text x="585" y="225" class="text">Advanced Search</text>
-  <text x="585" y="238" class="text small">everything_search_advanced</text>
+  <rect class="node" x="420" y="200" width="120" height="45"/>
+  <text x="480" y="220" class="text">GitHub Search</text>
+  <text x="480" y="235" class="text small">github_integration</text>
   
-  <rect class="node" x="690" y="200" width="130" height="45"/>
-  <text x="755" y="225" class="text">Service Check</text>
-  <text x="755" y="238" class="text small">everything_check_service</text>
+  <rect class="node" x="560" y="200" width="120" height="45"/>
+  <text x="620" y="220" class="text">Deep Research</text>
+  <text x="620" y="235" class="text small">intent_based</text>
+  
+  <rect class="node" x="700" y="200" width="120" height="45"/>
+  <text x="760" y="220" class="text">TUI Launch</text>
+  <text x="760" y="235" class="text small">terminal_ui</text>
   
   <!-- Process Execution -->
   <rect class="process" x="500" y="320" width="140" height="50"/>
