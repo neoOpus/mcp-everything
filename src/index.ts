@@ -43,11 +43,6 @@ class EverythingMCPServer {
       {
         name: 'everything-search',
         version: '1.0.0',
-      },
-      {
-        capabilities: {
-          tools: {},
-        },
       }
     );
 
@@ -329,8 +324,9 @@ class EverythingMCPServer {
         ],
       };
     } catch (error) {
-      await this.logTrace('search_error', { error: error.message });
-      throw new McpError(ErrorCode.InternalError, `Search failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      await this.logTrace('search_error', { error: errorMessage });
+      throw new McpError(ErrorCode.InternalError, `Search failed: ${errorMessage}`);
     }
   }
 
@@ -364,7 +360,7 @@ class EverythingMCPServer {
       // Build query with file type filters
       let finalQuery = query;
       if (fileTypes.length > 0) {
-        const extensions = fileTypes.map(ext => `ext:${ext}`).join(' | ');
+        const extensions = fileTypes.map((ext: string) => `ext:${ext}`).join(' | ');
         finalQuery = `(${extensions}) ${query}`;
       }
 
@@ -393,8 +389,9 @@ class EverythingMCPServer {
         ],
       };
     } catch (error) {
-      await this.logTrace('advanced_search_error', { error: error.message });
-      throw new McpError(ErrorCode.InternalError, `Advanced search failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      await this.logTrace('advanced_search_error', { error: errorMessage });
+      throw new McpError(ErrorCode.InternalError, `Advanced search failed: ${errorMessage}`);
     }
   }
 
@@ -421,7 +418,8 @@ class EverythingMCPServer {
         ],
       };
     } catch (error) {
-      await this.logTrace('service_check_error', { error: error.message });
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      await this.logTrace('service_check_error', { error: errorMessage });
       
       return {
         content: [
@@ -430,7 +428,7 @@ class EverythingMCPServer {
             text: JSON.stringify({
               status: 'error',
               everythingPath: EVERYTHING_PATH,
-              message: `Everything service check failed: ${error.message}`,
+              message: `Everything service check failed: ${errorMessage}`,
               troubleshooting: [
                 'Ensure Everything is installed and running',
                 'Check if es.exe exists at the specified path',
@@ -468,7 +466,7 @@ class EverythingMCPServer {
        let docQuery = query;
        
        // Add documentation file extensions
-       const extensions = docTypes.map(ext => `ext:${ext}`).join(' | ');
+       const extensions = docTypes.map((ext: string) => `ext:${ext}`).join(' | ');
        
        // Enhance query with documentation keywords
        const docKeywords = [
@@ -529,8 +527,9 @@ class EverythingMCPServer {
          ],
        };
      } catch (error) {
-       await this.logTrace('documentation_search_error', { error: error.message });
-       throw new McpError(ErrorCode.InternalError, `Documentation search failed: ${error.message}`);
+       const errorMessage = error instanceof Error ? error.message : String(error);
+       await this.logTrace('documentation_search_error', { error: errorMessage });
+       throw new McpError(ErrorCode.InternalError, `Documentation search failed: ${errorMessage}`);
      }
    }
 
@@ -575,8 +574,8 @@ class EverythingMCPServer {
      return priority;
    }
 
-   private summarizeDocumentationCategories(results: any[]): any {
-     const categories = {};
+   private summarizeDocumentationCategories(results: any[]): Record<string, number> {
+     const categories: Record<string, number> = {};
      results.forEach(result => {
        const category = result.category || 'general';
        categories[category] = (categories[category] || 0) + 1;
