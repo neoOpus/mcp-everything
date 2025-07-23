@@ -188,14 +188,50 @@ class EverythingMCPServer {
               required: ['query'],
             },
           },
-          {
-            name: 'everything_check_service',
-            description: 'Check if Everything service is running and accessible',
-            inputSchema: {
-              type: 'object',
-              properties: {},
-            },
-          },
+                     {
+             name: 'everything_check_service',
+             description: 'Check if Everything service is running and accessible',
+             inputSchema: {
+               type: 'object',
+               properties: {},
+             },
+           },
+           {
+             name: 'everything_search_docs',
+             description: 'Search for documentation, specifications, and requirement files optimized for SpecStory workflows',
+             inputSchema: {
+               type: 'object',
+               properties: {
+                 query: {
+                   type: 'string',
+                   description: 'Search query for documentation files',
+                 },
+                 maxResults: {
+                   type: 'number',
+                   description: 'Maximum results (default: 50)',
+                   default: 50,
+                 },
+                 docTypes: {
+                   type: 'array',
+                   items: { type: 'string' },
+                   description: 'Documentation types to search for: ["spec", "requirements", "design", "api", "readme", "docs"]',
+                   default: ['md', 'mdx', 'txt', 'rst', 'adoc']
+                 },
+                 includeArchived: {
+                   type: 'boolean',
+                   description: 'Include archived/old documentation',
+                   default: false,
+                 },
+                 sortBy: {
+                   type: 'string',
+                   enum: ['relevance', 'date', 'name', 'size'],
+                   description: 'Sort results by field',
+                   default: 'relevance',
+                 },
+               },
+               required: ['query'],
+             },
+           },
         ],
       };
     });
@@ -213,17 +249,20 @@ class EverythingMCPServer {
         case 'everything_search_advanced':
           return await this.handleAdvancedSearch(request.params.arguments);
         
-        case 'everything_check_service':
-          return await this.handleServiceCheck();
-        
-        default:
-          throw new McpError(
-            ErrorCode.MethodNotFound,
-            `Unknown tool: ${request.params.name}`
-          );
-      }
-    });
-  }
+                 case 'everything_check_service':
+           return await this.handleServiceCheck();
+         
+         case 'everything_search_docs':
+           return await this.handleDocumentationSearch(request.params.arguments);
+         
+         default:
+           throw new McpError(
+             ErrorCode.MethodNotFound,
+             `Unknown tool: ${request.params.name}`
+           );
+       }
+     });
+   }
 
   private async executeEverything(args: string[]): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -402,10 +441,150 @@ class EverythingMCPServer {
           },
         ],
       };
-    }
-  }
+         }
+   }
 
-  private parseSearchResults(output: string): SearchResult[] {
+   private async handleDocumentationSearch(args: any) {
+     try {
+       const {
+         query,
+         maxResults = 50,
+         docTypes = ['md', 'mdx', 'txt', 'rst', 'adoc'],
+         includeArchived = false,
+         sortBy = 'relevance',
+       } = args;
+
+       const esArgs = ['-n', maxResults.toString()];
+
+       // Sort options for documentation
+       switch (sortBy) {
+         case 'date': esArgs.push('-sort', 'dm'); break;
+         case 'name': esArgs.push('-sort', 'name'); break;
+         case 'size': esArgs.push('-sort', 'size'); break;
+         default: esArgs.push('-sort', 'name'); break; // Default to name for docs
+       }
+
+       // Build documentation-focused query
+       let docQuery = query;
+       
+       // Add documentation file extensions
+       const extensions = docTypes.map(ext => `ext:${ext}`).join(' | ');
+       
+       // Enhance query with documentation keywords
+       const docKeywords = [
+         'spec', 'specification', 'requirement', 'design', 'architecture',
+         'api', 'readme', 'doc', 'documentation', 'guide', 'manual',
+         'proposal', 'rfc', 'adr', 'decision'
+       ];
+       
+       // Combine extensions and query
+       let finalQuery = `(${extensions})`;
+       if (query.trim()) {
+         finalQuery += ` (${docQuery})`;
+       }
+       
+       // Exclude archived files unless requested
+       if (!includeArchived) {
+         esArgs.push('-no-archived');
+         finalQuery += ' !archive !old !deprecated !legacy';
+       }
+
+       esArgs.push(finalQuery);
+
+       const output = await this.executeEverything(esArgs);
+       const results = this.parseSearchResults(output);
+
+       // Enhance results with documentation context
+       const enhancedResults = results.map(result => ({
+         ...result,
+         category: this.categorizeDocumentationFile(result.name, result.path),
+         priority: this.calculateDocumentationPriority(result.name, result.path, docKeywords)
+       }));
+
+       // Sort by priority if relevance is selected
+       if (sortBy === 'relevance') {
+         enhancedResults.sort((a, b) => (b as any).priority - (a as any).priority);
+       }
+
+       await this.logTrace('documentation_search_results', {
+         query: finalQuery,
+         options: { docTypes, includeArchived, sortBy },
+         resultCount: enhancedResults.length,
+         categories: this.summarizeDocumentationCategories(enhancedResults)
+       });
+
+       return {
+         content: [
+           {
+             type: 'text',
+             text: JSON.stringify({
+               query: finalQuery,
+               originalQuery: query,
+               options: { docTypes, includeArchived, sortBy },
+               resultCount: enhancedResults.length,
+               results: enhancedResults.slice(0, maxResults),
+               summary: this.summarizeDocumentationCategories(enhancedResults)
+             }, null, 2),
+           },
+         ],
+       };
+     } catch (error) {
+       await this.logTrace('documentation_search_error', { error: error.message });
+       throw new McpError(ErrorCode.InternalError, `Documentation search failed: ${error.message}`);
+     }
+   }
+
+   private categorizeDocumentationFile(filename: string, filepath: string): string {
+     const lower = filename.toLowerCase();
+     const path = filepath.toLowerCase();
+     
+     if (lower.includes('readme')) return 'readme';
+     if (lower.includes('spec') || lower.includes('specification')) return 'specification';
+     if (lower.includes('requirement') || lower.includes('req')) return 'requirements';
+     if (lower.includes('design') || lower.includes('architecture')) return 'design';
+     if (lower.includes('api')) return 'api';
+     if (lower.includes('guide') || lower.includes('tutorial')) return 'guide';
+     if (lower.includes('rfc') || lower.includes('proposal')) return 'proposal';
+     if (lower.includes('adr') || lower.includes('decision')) return 'decision';
+     if (path.includes('/docs/') || path.includes('\\docs\\')) return 'documentation';
+     
+     return 'general';
+   }
+
+   private calculateDocumentationPriority(filename: string, filepath: string, keywords: string[]): number {
+     let priority = 0;
+     const lower = filename.toLowerCase() + ' ' + filepath.toLowerCase();
+     
+     // Higher priority for important doc types
+     if (lower.includes('readme')) priority += 10;
+     if (lower.includes('spec') || lower.includes('specification')) priority += 9;
+     if (lower.includes('requirement')) priority += 8;
+     if (lower.includes('design') || lower.includes('architecture')) priority += 7;
+     if (lower.includes('api')) priority += 6;
+     
+     // Boost for keywords in filename
+     keywords.forEach(keyword => {
+       if (filename.toLowerCase().includes(keyword)) priority += 2;
+       if (filepath.toLowerCase().includes(keyword)) priority += 1;
+     });
+     
+     // Prefer newer-style documentation
+     if (filename.endsWith('.md') || filename.endsWith('.mdx')) priority += 3;
+     if (filepath.includes('/docs/') || filepath.includes('\\docs\\')) priority += 2;
+     
+     return priority;
+   }
+
+   private summarizeDocumentationCategories(results: any[]): any {
+     const categories = {};
+     results.forEach(result => {
+       const category = result.category || 'general';
+       categories[category] = (categories[category] || 0) + 1;
+     });
+     return categories;
+   }
+
+   private parseSearchResults(output: string): SearchResult[] {
     const lines = output.trim().split('\n').filter(line => line.trim());
     
     return lines.map(line => {

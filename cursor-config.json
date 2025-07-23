@@ -1,6 +1,6 @@
 {
   "//": "MCP Configuration for Everything Search",
-  "//": "Configuration examples for Cursor IDE and Kiro IDE",
+  "//": "Configuration examples for Cursor IDE, Kiro IDE, and SpecStory",
   
   "mcp": {
     "servers": {
@@ -67,17 +67,52 @@
     }
   },
 
-  "kiro_global_install": {
-    "mcpServers": {
-      "everything-search": {
-        "command": "everything-mcp-server",
-        "args": [],
-        "env": {
-          "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
-          "TRACE_DIRECTORY": "D:\\outputs\\traces"
-        },
-        "description": "Everything search with global npm install"
-      }
-    }
-  }
+     "kiro_global_install": {
+     "mcpServers": {
+       "everything-search": {
+         "command": "everything-mcp-server",
+         "args": [],
+         "env": {
+           "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+           "TRACE_DIRECTORY": "D:\\outputs\\traces"
+         },
+         "description": "Everything search with global npm install"
+       }
+     }
+   },
+
+   "//": "SpecStory configurations:",
+   "//": "Add to your SpecStory MCP configuration file",
+
+   "specstory_mcp_config": {
+     "mcpServers": {
+       "everything-search": {
+         "command": "node",
+         "args": [
+           "path/to/everything-mcp/dist/index.js"
+         ],
+         "env": {
+           "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+           "TRACE_DIRECTORY": "D:\\outputs\\traces"
+         },
+         "description": "Everything search for specification and documentation workflows"
+       }
+     }
+   },
+
+   "specstory_documentation_focused": {
+     "mcpServers": {
+       "everything-search": {
+         "command": "node",
+         "args": [
+           "path/to/everything-mcp/dist/index.js"
+         ],
+         "env": {
+           "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+           "TRACE_DIRECTORY": "D:\\outputs\\traces"
+         },
+         "description": "Everything search optimized for finding specs, docs, and requirements"
+       }
+     }
+   }
 } 

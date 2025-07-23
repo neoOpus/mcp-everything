@@ -1,6 +1,6 @@
 # Everything MCP Server
 
-A Model Context Protocol (MCP) server that integrates [voidtools Everything](https://www.voidtools.com/) search engine with AI assistants like Cursor, [Kiro IDE](https://github.com/kirodotdev/Kiro), Claude, and other MCP-compatible tools. Provides lightning-fast file and folder search capabilities using Everything's powerful indexing.
+A Model Context Protocol (MCP) server that integrates [voidtools Everything](https://www.voidtools.com/) search engine with AI assistants like Cursor, [Kiro IDE](https://github.com/kirodotdev/Kiro), [SpecStory](https://github.com/specstoryai/docs), Claude, and other MCP-compatible tools. Provides lightning-fast file and folder search capabilities using Everything's powerful indexing.
 
 ![Everything MCP Architecture](./architecture.svg)
 
@@ -12,7 +12,7 @@ A Model Context Protocol (MCP) server that integrates [voidtools Everything](htt
 - **Regex Support**: Use regular expressions for complex searches
 - **Service Health Checks**: Verify Everything service status
 - **Comprehensive Logging**: Full trace logging for debugging
-- **Easy Integration**: Simple setup with Cursor, Kiro, and other MCP clients
+- **Easy Integration**: Simple setup with Cursor, Kiro, SpecStory, and other MCP clients
 
 ## 📋 Prerequisites
 
@@ -106,6 +106,48 @@ Add to your Cursor `settings.json`:
 - **Natural Language**: Ask Kiro to "find all TypeScript files modified today" and it will use Everything search
 - **Project Context**: Kiro understands your project structure and can combine Everything search with its codebase knowledge
 
+### SpecStory
+
+[SpecStory](https://github.com/specstoryai/docs) is a documentation and specification platform designed for LLM integration. To add Everything search to SpecStory workflows:
+
+1. **Set up MCP integration** in your SpecStory environment
+2. **Add the Everything MCP server** to your SpecStory MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "everything-search": {
+      "command": "node",
+      "args": ["path/to/everything-mcp/dist/index.js"],
+      "env": {
+        "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+        "TRACE_DIRECTORY": "D:\\outputs\\traces"
+      },
+      "description": "Everything search for finding specification files and documentation"
+    }
+  }
+}
+```
+
+3. **Restart SpecStory** to load the new MCP server
+4. **Use Everything search** to find relevant specification files, documentation, and project artifacts
+
+**SpecStory-specific features:**
+- **Specification Search**: Quickly find spec files, requirements documents, and related artifacts
+- **Documentation Discovery**: Search across all project documentation and markdown files  
+- **Cross-Reference Lookup**: Find files referenced in specifications using Everything's fast indexing
+- **Version Control Integration**: Search for spec files across different versions and branches
+- **Context-Aware Documentation**: Combine Everything search with SpecStory's LLM context for comprehensive documentation workflows
+
+**Example SpecStory workflows:**
+```json
+{
+  "query": "ext:md spec OR requirement OR design",
+  "fileTypes": ["md", "mdx", "txt"],
+  "sortBy": "date"
+}
+```
+
 ## 🔍 Available Tools
 
 ### 1. `everything_search`
@@ -131,6 +173,22 @@ Advanced search with comprehensive filtering and sorting options.
 
 ### 3. `everything_check_service`
 Verify Everything service is running and accessible.
+
+### 4. `everything_search_docs`
+Specialized documentation and specification search optimized for SpecStory workflows.
+
+**Parameters:**
+- `query` (required): Search query for documentation files
+- `maxResults` (optional): Maximum results (default: 50)
+- `docTypes` (optional): Documentation file types to search ['md', 'mdx', 'txt', 'rst', 'adoc']
+- `includeArchived` (optional): Include archived/old documentation (default: false)
+- `sortBy` (optional): Sort by 'relevance', 'date', 'name', or 'size'
+
+**Features:**
+- **Smart categorization**: Automatically categorizes docs as specs, requirements, designs, APIs, etc.
+- **Priority ranking**: Relevance-based sorting puts most important docs first
+- **Archive filtering**: Excludes deprecated/old documentation by default
+- **SpecStory optimization**: Designed for specification and documentation workflows
 
 ## 🔤 Everything Search Syntax
 
@@ -202,7 +260,7 @@ The server logs all operations to the trace directory:
 
 The Everything MCP Server provides a bridge between AI assistants and the Everything search engine:
 
-1. **MCP Client** (Cursor/Kiro/Claude) sends search requests
+1. **MCP Client** (Cursor/Kiro/SpecStory/Claude) sends search requests
 2. **MCP Server** validates and processes requests
 3. **es.exe** executes the actual search
 4. **Results** are parsed and returned as structured JSON
@@ -251,6 +309,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 - [Model Context Protocol](https://modelcontextprotocol.io/) for the MCP specification
 - The Cursor team for MCP integration
 - [Kiro IDE](https://github.com/kirodotdev/Kiro) for agentic development with MCP support
+- [SpecStory](https://github.com/specstoryai/docs) for specification and documentation workflows
 
 ---
 
