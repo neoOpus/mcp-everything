@@ -438,4 +438,4 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for the Everything and AI community** 
+**Made with ❤️ for the Everything and AI community**
