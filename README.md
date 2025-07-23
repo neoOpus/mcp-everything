@@ -142,9 +142,20 @@ Add to your Cursor `settings.json`:
 **Example SpecStory workflows:**
 ```json
 {
-  "query": "ext:md spec OR requirement OR design",
-  "fileTypes": ["md", "mdx", "txt"],
-  "sortBy": "date"
+  "query": "user authentication",
+  "docTypes": ["md", "mdx", "txt"],
+  "sortBy": "relevance",
+  "includeArchived": false
+}
+```
+
+**Use the specialized documentation search:**
+```json
+{
+  "tool": "everything_search_docs",
+  "query": "API specification",
+  "docTypes": ["md", "yaml", "json"],
+  "sortBy": "relevance"
 }
 ```
 
