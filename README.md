@@ -1,18 +1,35 @@
-# Everything MCP Server
+# Enhanced Everything MCP Server
 
-A Model Context Protocol (MCP) server that integrates [voidtools Everything](https://www.voidtools.com/) search engine with AI assistants like Cursor, [Kiro IDE](https://github.com/kirodotdev/Kiro), [SpecStory](https://github.com/specstoryai/docs), Claude, and other MCP-compatible tools. Provides lightning-fast file and folder search capabilities using Everything's powerful indexing.
+A comprehensive Model Context Protocol (MCP) server that transforms [voidtools Everything](https://www.voidtools.com/) search engine into an intelligent development research platform. Integrates with AI assistants like Cursor, [Kiro IDE](https://github.com/kirodotdev/Kiro), [SpecStory](https://github.com/specstoryai/docs), and Claude to provide lightning-fast file search, GitHub integration, intent-based code research, and spec-driven development tools.
 
 ![Everything MCP Architecture](./architecture.svg)
 
 ## 🚀 Features
 
+### Core Search Capabilities
 - **Lightning Fast Search**: Leverages Everything's instant search capabilities
 - **Advanced Filtering**: Filter by file types, size, date, and more
 - **Multiple Sort Options**: Sort by name, size, date, or path
 - **Regex Support**: Use regular expressions for complex searches
 - **Service Health Checks**: Verify Everything service status
-- **Comprehensive Logging**: Full trace logging for debugging
-- **Easy Integration**: Simple setup with Cursor, Kiro, SpecStory, and other MCP clients
+
+### Enhanced Research Features
+- **🧠 Intent-Based Code Research**: Analyzes specifications and finds matching implementations across GitHub
+- **🔗 GitHub MCP Integration**: Seamless local/remote search with repository metadata
+- **📊 SQLite Knowledge Base**: Builds searchable library of code patterns over time
+- **📈 CSV Export Integration**: Structured data export using ES tools
+- **🎯 Implementation Suggestions**: AI-powered recommendations based on research findings
+
+### Spec-Driven Development
+- **📋 Specification Awareness**: Understands requirements, design, and task documents
+- **🔍 Traceability Analysis**: Cross-references between specs and implementation
+- **📊 Progress Tracking**: Monitors specification coverage and task completion
+- **🖥️ Terminal UI (TUI)**: Rich terminal interface for interactive project management
+
+### Integration & Automation
+- **⚡ One-Click Kiro Installation**: Automated setup and configuration
+- **🔧 Comprehensive Logging**: Full trace logging with structured debugging
+- **🚀 Easy Integration**: Simple setup with Cursor, Kiro, SpecStory, and other MCP clients
 
 ## 📋 Prerequisites
 
@@ -34,7 +51,7 @@ A Model Context Protocol (MCP) server that integrates [voidtools Everything](htt
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/everything-mcp.git
+git clone https://github.com/somacosf/everything-mcp.git
 cd everything-mcp
 
 # Install dependencies
@@ -201,6 +218,39 @@ Specialized documentation and specification search optimized for SpecStory workf
 - **Archive filtering**: Excludes deprecated/old documentation by default
 - **SpecStory optimization**: Designed for specification and documentation workflows
 
+### 5. `everything_deep_research` *(Coming Soon)*
+Intent-based code research across public GitHub repositories.
+
+**Parameters:**
+- `specification` (required): Path to specification document or text content
+- `searchDepth` (optional): 'shallow', 'medium', or 'deep' research depth
+- `languages` (optional): Preferred programming languages
+- `maxRepositories` (optional): Maximum repositories to analyze
+
+**Features:**
+- **Intent Analysis**: Parses specifications to understand implementation goals
+- **Pattern Discovery**: Finds code patterns that match specification requirements
+- **Quality Assessment**: Evaluates code quality, license compatibility, and maintenance status
+- **Knowledge Base**: Stores findings in SQLite database for future reference
+
+### 6. `everything_github_search` *(Coming Soon)*
+Combined local and GitHub repository search.
+
+**Parameters:**
+- `query` (required): Search query
+- `includeLocal` (optional): Include local file search (default: true)
+- `includeGitHub` (optional): Include GitHub repository search (default: true)
+- `repositories` (optional): Specific repositories to search
+
+### 7. `everything_tui_launch` *(Coming Soon)*
+Launch Terminal User Interface for interactive project management.
+
+**Features:**
+- **Project Dashboard**: Overview of specifications, tasks, and progress
+- **Interactive Search**: Real-time search with filtering and sorting
+- **Research Interface**: Monitor deep research progress and results
+- **Implementation Suggestions**: Browse AI-generated recommendations
+
 ## 🔤 Everything Search Syntax
 
 The server supports full Everything search syntax:
@@ -269,18 +319,74 @@ The server logs all operations to the trace directory:
 
 ## 🏗️ Architecture
 
-The Everything MCP Server provides a bridge between AI assistants and the Everything search engine:
+The Enhanced Everything MCP Server transforms simple file search into an intelligent development research platform:
 
+### Current Architecture (v1.0)
 1. **MCP Client** (Cursor/Kiro/SpecStory/Claude) sends search requests
 2. **MCP Server** validates and processes requests
 3. **es.exe** executes the actual search
 4. **Results** are parsed and returned as structured JSON
 5. **Trace System** logs all operations for debugging
 
+### Enhanced Architecture (v2.0 - In Development)
+```
+┌─────────────────┐    ┌──────────────────────────────────┐    ┌─────────────────┐
+│   Kiro IDE      │    │     Enhanced MCP Server          │    │  External APIs  │
+│                 │    │                                  │    │                 │
+│ ┌─────────────┐ │    │ ┌─────────────┐ ┌──────────────┐ │    │ ┌─────────────┐ │
+│ │ Chat/Agent  │◄┼────┼►│ MCP Core    │ │ GitHub       │◄┼────┼►│ GitHub API  │ │
+│ └─────────────┘ │    │ └─────────────┘ │ Integration  │ │    │ └─────────────┘ │
+│                 │    │                 └──────────────┘ │    │                 │
+│ ┌─────────────┐ │    │ ┌─────────────┐ ┌──────────────┐ │    │ ┌─────────────┐ │
+│ │ Terminal    │◄┼────┼►│ TUI         │ │ Research     │ │    │ │ Everything  │ │
+│ │ Interface   │ │    │ │ Controller  │ │ Engine       │◄┼────┼►│ Search      │ │
+│ └─────────────┘ │    │ └─────────────┘ └──────────────┘ │    │ └─────────────┘ │
+└─────────────────┘    │                                  │    └─────────────────┘
+                       │ ┌─────────────┐ ┌──────────────┐ │    
+                       │ │ SQLite      │ │ Logging      │ │    
+                       │ │ Knowledge   │ │ Harness      │ │    
+                       │ │ Base        │ └──────────────┘ │    
+                       │ └─────────────┘                  │    
+                       └──────────────────────────────────┘    
+```
+
+### Key Components
+- **Research Engine**: Intent-based code discovery and pattern analysis
+- **Knowledge Base**: SQLite database for accumulated research findings
+- **GitHub Integration**: Seamless local/remote search capabilities
+- **TUI Controller**: Rich terminal interface for interactive development
+- **Spec Awareness**: Understanding of requirements, design, and task documents
+
+## �️ eRoadmap
+
+### ✅ Phase 1: Core Search (v1.0 - Current)
+- [x] Basic Everything search integration
+- [x] Advanced filtering and sorting
+- [x] Documentation search optimization
+- [x] MCP protocol implementation
+- [x] Comprehensive logging and tracing
+
+### 🚧 Phase 2: Enhanced Research (v2.0 - In Development)
+- [ ] GitHub MCP integration
+- [ ] Intent-based code research
+- [ ] SQLite knowledge base
+- [ ] CSV export capabilities
+- [ ] Pattern recognition and analysis
+
+### 🔮 Phase 3: Intelligence & Automation (v3.0 - Planned)
+- [ ] Terminal User Interface (TUI)
+- [ ] AI-powered implementation suggestions
+- [ ] Automated specification analysis
+- [ ] One-click Kiro installation
+- [ ] Advanced voidtools integration
+
+### 📋 Current Status
+The enhanced features are currently in **specification phase**. See `.kiro/specs/enhanced-everything-mcp/` for detailed requirements, design, and implementation plans.
+
 ## 🚀 Development
 
 ```bash
-# Run in development mode
+# Run current version in development mode
 npm run dev
 
 # Build for production
@@ -288,6 +394,9 @@ npm run build
 
 # Start built server
 npm start
+
+# View enhancement specifications
+# Open .kiro/specs/enhanced-everything-mcp/ in Kiro IDE
 ```
 
 ### File Structure
@@ -295,6 +404,11 @@ npm start
 everything-mcp/
 ├── src/
 │   └── index.ts              # Main server implementation
+├── .kiro/specs/              # Enhancement specifications
+│   └── enhanced-everything-mcp/
+│       ├── requirements.md   # Detailed requirements
+│       ├── design.md         # Architecture design
+│       └── tasks.md          # Implementation plan
 ├── dist/                     # Built files (generated)
 ├── package.json              # Dependencies and scripts
 ├── tsconfig.json             # TypeScript configuration
