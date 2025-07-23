@@ -1,0 +1,50 @@
+{
+  "//": "Cursor MCP Configuration for Everything Search",
+  "//": "Add this to your Cursor settings.json under the 'mcp' key",
+  
+  "mcp": {
+    "servers": {
+      "everything-search": {
+        "command": "node",
+        "args": [
+          "path/to/everything-mcp/dist/index.js"
+        ],
+        "env": {
+          "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+          "TRACE_DIRECTORY": "D:\\outputs\\traces"
+        },
+        "description": "Everything search integration for fast file/folder search"
+      }
+    }
+  },
+  
+  "//": "Alternative configurations:",
+  
+  "mcp_global_install": {
+    "servers": {
+      "everything-search": {
+        "command": "everything-mcp-server",
+        "args": [],
+        "env": {
+          "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
+          "TRACE_DIRECTORY": "D:\\outputs\\traces"
+        }
+      }
+    }
+  },
+  
+  "mcp_custom_path": {
+    "servers": {
+      "everything-search": {
+        "command": "node",
+        "args": [
+          "C:\\path\\to\\everything-mcp\\dist\\index.js"
+        ],
+        "env": {
+          "EVERYTHING_PATH": "C:\\CustomPath\\Everything\\es.exe",
+          "TRACE_DIRECTORY": "D:\\outputs\\traces"
+        }
+      }
+    }
+  }
+} 

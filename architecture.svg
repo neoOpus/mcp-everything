@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <defs>
+    <style>
+      .node { fill: #e1f5fe; stroke: #333; stroke-width: 2; rx: 8; }
+      .process { fill: #e8f5e8; stroke: #333; stroke-width: 2; rx: 8; }
+      .engine { fill: #f3e5f5; stroke: #333; stroke-width: 2; rx: 8; }
+      .trace { fill: #fff3e0; stroke: #333; stroke-width: 2; rx: 8; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .dashed { stroke-dasharray: 8,4; stroke: #666; }
+      .text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: bold; text-anchor: middle; }
+      .small { font-size: 10px; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="500" y="30" class="title">Everything MCP Server Architecture</text>
+  
+  <!-- User Layer -->
+  <rect class="node" x="50" y="80" width="150" height="50"/>
+  <text x="125" y="110" class="text">User in Cursor IDE</text>
+  
+  <!-- AI Assistant -->
+  <rect class="node" x="280" y="80" width="150" height="50"/>
+  <text x="355" y="110" class="text">Cursor AI Assistant</text>
+  
+  <!-- MCP Server -->
+  <rect class="node" x="550" y="80" width="160" height="50"/>
+  <text x="630" y="110" class="text">Everything MCP Server</text>
+  
+  <!-- Tool Handlers -->
+  <rect class="node" x="350" y="200" width="130" height="45"/>
+  <text x="415" y="225" class="text">Basic Search</text>
+  <text x="415" y="238" class="text small">everything_search</text>
+  
+  <rect class="node" x="520" y="200" width="130" height="45"/>
+  <text x="585" y="225" class="text">Advanced Search</text>
+  <text x="585" y="238" class="text small">everything_search_advanced</text>
+  
+  <rect class="node" x="690" y="200" width="130" height="45"/>
+  <text x="755" y="225" class="text">Service Check</text>
+  <text x="755" y="238" class="text small">everything_check_service</text>
+  
+  <!-- Process Execution -->
+  <rect class="process" x="500" y="320" width="140" height="50"/>
+  <text x="570" y="350" class="text">Execute es.exe</text>
+  
+  <!-- Everything Engine -->
+  <rect class="engine" x="350" y="440" width="160" height="50"/>
+  <text x="430" y="470" class="text">Everything Search Engine</text>
+  
+  <!-- Windows File Index -->
+  <rect class="engine" x="580" y="440" width="140" height="50"/>
+  <text x="650" y="470" class="text">Windows File Index</text>
+  
+  <!-- Result Processing -->
+  <rect class="process" x="500" y="560" width="140" height="50"/>
+  <text x="570" y="590" class="text">Parse Results</text>
+  
+  <!-- Trace System -->
+  <rect class="trace" x="750" y="320" width="120" height="120"/>
+  <text x="810" y="360" class="text">Trace System</text>
+  <text x="810" y="380" class="text small">Log Operations</text>
+  <text x="810" y="400" class="text small">Development Diary</text>
+  <text x="810" y="420" class="text small">D:\outputs\traces</text>
+  
+  <!-- Response Flow -->
+  <rect class="node" x="280" y="560" width="150" height="50"/>
+  <text x="355" y="590" class="text">MCP Response</text>
+  
+  <!-- Main Flow Arrows -->
+  <line class="arrow" x1="200" y1="105" x2="280" y2="105"/>
+  <text x="240" y="100" class="text small">Request search</text>
+  
+  <line class="arrow" x1="430" y1="105" x2="550" y2="105"/>
+  <text x="490" y="100" class="text small">MCP Tool Call</text>
+  
+  <!-- Tool Selection -->
+  <line class="arrow" x1="630" y1="130" x2="415" y2="200"/>
+  <line class="arrow" x1="630" y1="130" x2="585" y2="200"/>
+  <line class="arrow" x1="630" y1="130" x2="755" y2="200"/>
+  
+  <!-- Tool to Execution -->
+  <line class="arrow" x1="415" y1="245" x2="570" y2="320"/>
+  <line class="arrow" x1="585" y1="245" x2="570" y2="320"/>
+  <line class="arrow" x1="755" y1="245" x2="570" y2="320"/>
+  
+  <!-- Execution to Engine -->
+  <line class="arrow" x1="570" y1="370" x2="430" y2="440"/>
+  <text x="500" y="400" class="text small">spawn process</text>
+  
+  <!-- Engine to File System -->
+  <line class="arrow" x1="510" y1="465" x2="580" y2="465"/>
+  <text x="545" y="460" class="text small">scan</text>
+  
+  <!-- File System Response -->
+  <line class="arrow" x1="580" y1="475" x2="510" y2="475"/>
+  <text x="545" y="490" class="text small">results</text>
+  
+  <!-- Engine to Parser -->
+  <line class="arrow" x1="430" y1="490" x2="570" y2="560"/>
+  <text x="500" y="530" class="text small">stdout</text>
+  
+  <!-- Parser to Response -->
+  <line class="arrow" x1="500" y1="585" x2="430" y2="585"/>
+  <text x="465" y="580" class="text small">JSON</text>
+  
+  <!-- Response to Assistant -->
+  <line class="arrow" x1="355" y1="560" x2="355" y2="130"/>
+  <text x="325" y="350" class="text small">JSON response</text>
+  
+  <!-- Trace Connections (dashed) -->
+  <line class="dashed" x1="630" y1="130" x2="750" y2="360"/>
+  <line class="dashed" x1="570" y1="370" x2="750" y2="380"/>
+  <line class="dashed" x1="570" y1="610" x2="750" y2="400"/>
+  
+  <!-- Error Handling Box -->
+  <rect class="trace" x="50" y="400" width="180" height="120"/>
+  <text x="140" y="430" class="text">Error Handling</text>
+  <text x="140" y="450" class="text small">es.exe not found</text>
+  <text x="140" y="465" class="text small">No results</text>
+  <text x="140" y="480" class="text small">Permission denied</text>
+  <text x="140" y="495" class="text small">Service down</text>
+  
+  <!-- Error connections (dashed) -->
+  <line class="dashed" x1="500" y1="345" x2="230" y2="460"/>
+  <line class="dashed" x1="350" y1="465" x2="230" y2="460"/>
+  <line class="dashed" x1="500" y1="585" x2="230" y2="500"/>
+</svg> 

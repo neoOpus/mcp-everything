@@ -1,0 +1,50 @@
+{
+  "name": "everything-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for voidtools Everything search integration with AI assistants",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "everything-mcp-server": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "everything",
+    "search",
+    "files",
+    "cursor",
+    "ai",
+    "model-context-protocol",
+    "voidtools"
+  ],
+  "author": "Everything MCP Server Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/everything-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/everything-mcp/issues"
+  },
+  "homepage": "https://github.com/yourusername/everything-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "os": [
+    "win32"
+  ]
+} 
