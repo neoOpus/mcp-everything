@@ -2,18 +2,17 @@
   "mcpServers": {
     "everything-search": {
       "command": "node",
-      "args": ["./dist/index.js"],
+      "args": ["D:\\sort_litter\\everything-mcp\\dist\\index.js"],
       "env": {
         "EVERYTHING_PATH": "C:\\Program Files\\Everything\\es.exe",
         "TRACE_DIRECTORY": "D:\\outputs\\traces"
       },
-      "description": "Enhanced Everything search with GitHub integration and spec-driven development tools",
+      "description": "Enhanced Everything search with GitHub integration and spec-driven development",
       "autoApprove": [
         "everything_search",
         "everything_search_advanced", 
         "everything_search_docs",
-        "everything_check_service",
-        "everything_tui_launch"
+        "everything_check_service"
       ]
     }
   }

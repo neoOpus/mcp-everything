@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Everything MCP - Web TUI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="tui-container">
+        <div id="header">Kiro Everything MCP - Web Interface</div>
+        <div id="tabs">
+            <div class="tab active" data-tab="dashboard">Dashboard</div>
+            <div class="tab" data-tab="search">Search</div>
+            <div class="tab" data-tab="research">Research</div>
+            <div class="tab" data-tab="specs">Specs</div>
+            <div class="tab" data-tab="gemini">Gemini</div>
+        </div>
+        <div id="content">
+            <!-- Dashboard, Search, Research, Specs content will be dynamically loaded here -->
+            <div id="gemini-prompt-container">
+                <h2>Gemini Prompt</h2>
+                <textarea id="gemini-prompt" placeholder="Enter your prompt here..."></textarea>
+                <button id="gemini-submit">Submit</button>
+                <div id="gemini-response"></div>
+            </div>
+        </div>
+        <div id="status-bar">Connected</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

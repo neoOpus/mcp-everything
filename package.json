@@ -11,6 +11,8 @@
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
+    "search": "node simple-search.js",
+    "tui": "node src/tui.js",
     "test": "node test-hello-world.js",
     "test:kiro": "npm run build && npm run test",
     "prepare": "npm run build"
@@ -36,7 +38,11 @@
   },
   "homepage": "https://github.com/SoMaCoSF/mcp-everything#readme",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.4.0"
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0",
+    "chalk": "^5.4.1",
+    "figlet": "^1.8.2"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -49,4 +55,4 @@
   "os": [
     "win32"
   ]
-} 
+}

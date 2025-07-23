@@ -227,6 +227,21 @@ class EverythingMCPServer {
                required: ['query'],
              },
            },
+           {
+             name: 'everything_tui_launch',
+             description: 'Launch the Terminal User Interface for interactive project management and search',
+             inputSchema: {
+               type: 'object',
+               properties: {
+                 mode: {
+                   type: 'string',
+                   enum: ['dashboard', 'search', 'research', 'specs'],
+                   description: 'Initial tab to display (default: dashboard)',
+                   default: 'dashboard',
+                 },
+               },
+             },
+           },
         ],
       };
     });
@@ -249,6 +264,9 @@ class EverythingMCPServer {
          
          case 'everything_search_docs':
            return await this.handleDocumentationSearch(request.params.arguments);
+         
+         case 'everything_tui_launch':
+           return await this.handleTUILaunch(request.params.arguments);
          
          default:
            throw new McpError(
@@ -581,6 +599,75 @@ class EverythingMCPServer {
        categories[category] = (categories[category] || 0) + 1;
      });
      return categories;
+   }
+
+   private async handleTUILaunch(args: any) {
+     try {
+       const { mode = 'dashboard' } = args;
+
+       await this.logTrace('tui_launch', {
+         mode,
+         timestamp: new Date().toISOString(),
+       });
+
+       // Launch TUI in a separate process
+       const { spawn } = await import('child_process');
+       const tuiProcess = spawn('node', ['src/tui.js'], {
+         stdio: 'inherit',
+         detached: true,
+         shell: true
+       });
+
+       // Don't wait for the TUI process to complete
+       tuiProcess.unref();
+
+       return {
+         content: [
+           {
+             type: 'text',
+             text: JSON.stringify({
+               status: 'launched',
+               mode,
+               message: 'Terminal User Interface launched successfully',
+               instructions: [
+                 'The TUI is now running in a separate terminal window',
+                 'Use keyboard shortcuts: 1-4 to switch tabs, h for help, q to quit',
+                 'Navigate with arrow keys, Enter to select, Tab for quick actions',
+                 `Started in ${mode} mode`
+               ],
+               features: [
+                 'Interactive dashboard with project overview',
+                 'Real-time search with live filtering',
+                 'Research interface for GitHub discovery',
+                 'Specification management and progress tracking'
+               ]
+             }, null, 2),
+           },
+         ],
+       };
+     } catch (error) {
+       const errorMessage = error instanceof Error ? error.message : String(error);
+       await this.logTrace('tui_launch_error', { error: errorMessage });
+       
+       return {
+         content: [
+           {
+             type: 'text',
+             text: JSON.stringify({
+               status: 'error',
+               message: `Failed to launch TUI: ${errorMessage}`,
+               troubleshooting: [
+                 'Ensure dependencies are installed: npm install blessed blessed-contrib',
+                 'Check that Node.js version is 18 or higher',
+                 'Verify terminal supports Unicode characters',
+                 'Try running manually: npm run tui'
+               ],
+               fallback: 'Use MCP tools directly in Kiro chat for now'
+             }, null, 2),
+           },
+         ],
+       };
+     }
    }
 
    private parseSearchResults(output: string): SearchResult[] {

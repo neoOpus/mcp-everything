@@ -234,6 +234,40 @@
             border: 2px solid #4CAF50;
             overflow-x: auto;
         }
+
+        .gemini-prompt-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #gemini-prompt {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1em;
+            resize: vertical;
+        }
+
+        #gemini-submit {
+            align-self: flex-end;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #gemini-submit:hover {
+            background-color: #45a049;
+        }
         
         .stats-grid {
             display: grid;
@@ -529,6 +563,15 @@ Commands: /search [query], /research [spec], /export [format], /help
             </div>
         </div>
 
+        <!-- Gemini Prompt Box -->
+        <div class="section">
+            <h2>🤖 Gemini Prompt</h2>
+            <div class="gemini-prompt-box">
+                <textarea id="gemini-prompt" placeholder="Enter your prompt for Gemini..."></textarea>
+                <button id="gemini-submit">Submit</button>
+            </div>
+        </div>
+
         <!-- Statistics -->
         <div class="section">
             <h2>📊 Project Statistics</h2>
@@ -549,6 +592,55 @@ Commands: /search [query], /research [spec], /export [format], /help
                     <div class="stat-number">5</div>
                     <div class="stat-label">Visual Diagrams</div>
                 </div>
+            </div>
+        </div>
+
+        <!-- CLI Tools Section -->
+        <div class="section">
+            <h2>🔧 Agentic CLI Tools</h2>
+            <p>A curated list of popular CLI tools for agentic computing and large language model development.</p>
+            <div class="code-block">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>gemini</code></td>
+                            <td>Google's CLI for interacting with Gemini models.</td>
+                        </tr>
+                        <tr>
+                            <td><code>claude</code></td>
+                            <td>Anthropic's CLI for interacting with Claude models.</td>
+                        </tr>
+                        <tr>
+                            <td><code>gh</code></td>
+                            <td>GitHub's official command-line tool.</td>
+                        </tr>
+                        <tr>
+                            <td><code>vercel</code></td>
+                            <td>A CLI for deploying to Vercel.</td>
+                        </tr>
+                        <tr>
+                            <td><code>llm</code></td>
+                            <td>A CLI tool and Python library for interacting with a wide range of Large Language Models.</td>
+                        </tr>
+                        <tr>
+                            <td><code>ollama</code></td>
+                            <td>A popular tool for running LLMs locally.</td>
+                        </tr>
+                        <tr>
+                            <td><code>aider</code></td>
+                            <td>An open-source AI pair-programming tool that works with your local git repositories.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="./cli_tools/agentic_cli.md" class="cta-button">View Full List</a>
             </div>
         </div>
 

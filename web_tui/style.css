@@ -1,0 +1,77 @@
+
+body {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+#tui-container {
+    border: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#header {
+    background-color: #333;
+    padding: 5px;
+    text-align: center;
+}
+
+#tabs {
+    display: flex;
+    background-color: #252526;
+}
+
+.tab {
+    padding: 10px;
+    cursor: pointer;
+    border-right: 1px solid #333;
+}
+
+.tab.active {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+#content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#gemini-prompt-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#gemini-prompt {
+    background-color: #252526;
+    border: 1px solid #555;
+    color: #f0f0f0;
+    font-family: inherit;
+    margin-bottom: 10px;
+    padding: 10px;
+    resize: vertical;
+}
+
+#gemini-submit {
+    background-color: #0e639c;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#gemini-response {
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+#status-bar {
+    background-color: #333;
+    padding: 5px;
+    text-align: center;
+}
